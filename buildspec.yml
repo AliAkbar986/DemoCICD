@@ -1,6 +1,6 @@
 version: 0.2
 
-phases: 
+phases:
     install:
         runtime-versions:
             nodejs: latest
@@ -9,12 +9,24 @@ phases:
     pre_build:
         commands: 
             - echo "we are in the pre build phase"
+            
     build:
         commands:
-            - echo "we are in the build block"
-            - echo "we will run some tests"
-            - grep -Fq "Congratulations" index.html
+            - echo "Build block"
+            - ls
+            - echo "Running tests to check if "Congratulations" present in index.html file"
+            - grep "Congratulations" index.html
+            
     post_build:
         commands:
-            - echo "we are in the post build phase"
+            - echo "Post build phase"
+artifacts:
+    files:
+        - scripts/install_dependencies
+        - scripts/start_server
+        - scripts/stop_server
+        - index.html
+        - appspec.yml
+        
+    discard-paths: yes
             
